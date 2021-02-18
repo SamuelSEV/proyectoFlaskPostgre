@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="card card-body">
+    <form action="/modificar/{{vuelo.id}}" method="POST">
+        <div class="form-group">
+            <input type="text" name="vuelo" placeholder="vuelo" class="form-control" value="{{vuelo.vuelo}}">
+            
+        </div>
+        <div class="form-group">
+            <input type="text" name="compañia" placeholder="compañia" class="form-control" value="{{vuelo.compañia}}">
+        </div>
+        <div class="form-group">
+          <input type="text" name="hora" placeholder="fecha/hora" class="form-control"value="{{vuelo.hora}}">
+            
+        </div>
+        <div class="form-group">
+           <button type="submit" class="btn btn-block btn-lg btn-outline-success">Modificar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

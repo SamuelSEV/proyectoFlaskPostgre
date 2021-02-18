@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% with menssages = get_flashed_messages() %}
+{% if menssages %}
+{% for menssage in menssages %}
+    
+    
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">{{menssage}}</h4>
+    </div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+        <div class="card card-body">
+            <form action="/agregar" method="POST">
+                <div class="form-group">
+                    <input type="text" name="vuelo" placeholder="vuelo" class="form-control">
+                    
+                </div>
+                <div class="form-group">
+                    <input type="text" name="compañia" placeholder="compañia" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="hora" placeholder="fecha/hora" class="form-control">
+                    
+                </div>
+                <div class="form-group">
+                   <button type="submit" class="btn btn-block btn-lg btn-outline-success">Insertar</button>
+                </div>
+            </form>
+        </div>
+
+        <table class="table table-hover table-dark table-striped ">
+            <thead>
+                <tr class="table-light">
+                    <th class="">Vuelo</th>
+                    <th>Compañia</th>
+                    <th>Fecha/Hora</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vuelo in vuelos %}
+                    <tr>
+                        <td>{{ vuelo.vuelo }}</td>
+                        <td>{{ vuelo.compañia }}</td>
+                        <td>{{ vuelo.hora }}</td>
+                        <td class="table-light">
+                            <a href="/editar/{{vuelo.id}}" class="btn btn-outline-primary mr-5 ml-5">Editar</a>
+                            <a href="{{url_for('borrar', id=vuelo.id)}}" class="btn btn-outline-danger">Borrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}
+
